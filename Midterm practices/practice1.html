@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aDD Balls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #da88b4;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        p {
+            font-size: 18px;
+        }
+        
+        .ball {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 5px;
+            /* border: 2px solid #333; */
+        }
+        
+        .par {
+            padding: 2px;
+            margin: 2px;
+            border: 3px solid #ca0606;
+            border-radius: 10%;
+        }
+        
+        #add-ball-button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #add-ball-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Balls</h1>
+    <button id="add-ball-button">Add Ball</button>
+    <div class="par">
+        <div id="balls-container" class="balls-container"></div>
+    </div>
+    <script>
+        const ballsContainer = document.getElementById('balls-container');
+        const addBallButton = document.getElementById('add-ball-button');
+
+        let ballCount = 0;
+
+        addBallButton.addEventListener('click', addBall);
+
+        function addBall() {
+            const ball = document.createElement('div');
+            ball.className = 'ball';
+
+            const randomColor = getRandomColor();
+            ball.style.backgroundColor = `#${randomColor}`;
+
+            ball.addEventListener('click', () => {
+                ball.remove();
+            });
+
+            ballsContainer.appendChild(ball);
+            ballCount++;
+        }
+
+        function getRandomColor() {
+            return Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+        }
+    </script>
+
+</body>
+
+</html>

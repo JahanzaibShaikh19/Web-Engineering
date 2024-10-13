@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a3743, #f0f8ff);
+        }
+        
+        .game-area {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6347;
+            border-radius: 50%;
+            animation: floatUp 5s linear infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-50px);
+            }
+        }
+        
+        .scoreboard {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            font-size: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="scoreboard">
+        <p><strong>Score: </strong><span id="score">0</span></p>
+        <p><strong>Balloons Missed: </strong><span id="missed">0</span></p>
+    </div>
+
+    <div class="game-area" id="gameArea"></div>
+
+    <script>
+        const gameArea = document.getElementById('gameArea');
+        const scoreDisplay = document.getElementById('score');
+        const missedDisplay = document.getElementById('missed');
+
+        let score = 0;
+        let missed = 0;
+        let gameOver = false;
+
+        function createBalloon() {
+            if (gameOver) return;
+
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+
+            gameArea.appendChild(balloon);
+
+            balloon.addEventListener('click', () => {
+                score++;
+                updateScore();
+                balloon.remove();
+            });
+
+            balloon.addEventListener('animationend', () => {
+                missed++;
+                updateMissed();
+                balloon.remove();
+
+                if (missed >= 20) {
+                    endGame();
+                }
+            });
+        }
+
+        function startGame() {
+            setInterval(createBalloon, 1000);
+        }
+
+        function updateScore() {
+            scoreDisplay.textContent = score;
+        }
+
+        function updateMissed() {
+            missedDisplay.textContent = missed;
+        }
+
+        function endGame() {
+            gameOver = true;
+            showGameOverMessage();
+        }
+
+        function showGameOverMessage() {
+            const gameOverMessage = document.createElement('div');
+            gameOverMessage.classList.add('game-over');
+            gameOverMessage.innerHTML = `<p>Game Over!</p><p>Your Score: ${score}</p><p>Balloons Missed: ${missed}</p>`;
+            gameArea.appendChild(gameOverMessage);
+        }
+
+        startGame();
+    </script>
+
+</body>
+
+</html>

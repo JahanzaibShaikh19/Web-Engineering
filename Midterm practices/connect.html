@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <script>
+        function clickkk() {
+            document.getElementById("button").style.color = "blue";
+        }
+
+        const person = {
+            name: "Jahanzaib Shaikh",
+            age: 20,
+            occupation: "Student",
+            subjects: ["CN", "WEB"],
+        };
+
+        console.log("Person's Subjects are: ", person.subjects);
+
+        for (let i = 0; i < 10; i++) {
+            console.log("i: ", i);
+        }
+
+        persons = ["Joe", "Biden", "Siri", "Ahmed", "Afaq"];
+        let txt = "";
+        for (let x in persons) {
+            txt += persons[x];
+        }
+        const person5 = {
+            name: "John",
+            age: 30,
+            occupation: "Developer"
+        };
+
+        for (let prop in person5) {
+            console.log(prop + ": " + person5[prop]);
+        }
+
+        const colors = ["red", "green", "blue"];
+
+        for (let color of colors) {
+            console.log(color);
+        }
+
+        const person23 = {
+            name: "John",
+            age: 30,
+            occupation: "Developer",
+            hobbies: ["reading", "hiking", "coding"]
+        };
+
+        for (let i = 0; i < person23.hobbies.length; i++) {
+            console.log("Hobby " + (i + 1) + ": " + person23.hobbies[i]);
+        }
+
+        for (let prop in person23) {
+            console.log(prop + ": " + person23[prop]);
+        }
+
+        for (let hobby of person23.hobbies) {
+            console.log("Hobby: " + hobby);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Click the button</h1>
+        <button class="button" id="button" onclick="clickkk()"> click mee</button>
+    </div>
+
+    <script>
+        function clickkk() {
+            document.getElementById("button").style.color = "red";
+        }
+    </script>
+
+
+
+</body>
+
+</html>

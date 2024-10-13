@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            background-color: rgb(200, 250, 250);
+        }
+        
+        .container {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+        
+        .p1::first-letter {
+            font-size: xx-large;
+        }
+        
+        .p1::first-line {
+            color: blue;
+        }
+        
+        .exciting-text::after {
+            content: " <- EXCITING!";
+            color: green;
+        }
+        
+        .boring-text::after {
+            content: " <- BORING";
+            color: red;
+        }
+        
+        q::before {
+            content: "<<";
+            color: rgb(8, 103, 38);
+        }
+        
+        q::after {
+            content: ">>";
+            color: rgb(8, 103, 38);
+        }
+        
+         ::selection {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: white;
+        }
+        
+        ul li::marker {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <p class="p1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus iste in recusandae reprehenderit laborum sunt. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates consequatur sed sapiente vero possimus quisquam quos doloribus
+            quae. Tempora qui ullam corrupti odit libero dolores perspiciatis porro esse explicabo doloremque! Provident dolores error consequatur.</p>
+
+        <p class="boring-text">Here is some plain old boring text.</p>
+        <p>Here is some normal text that is neither boring nor exciting.</p>
+        <p class="exciting-text">Contributing to MDN is easy and fun.</p>
+
+
+        <q>Some quotes</q>, he said, <q>are better than none.</q>
+
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact-US</li>
+        </ul>
+        <div class="task" style="color:brown; display: flex; border: 2px solid red; ">
+            <p style="width: fit-content;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime deleniti nisi, atque voluptatibus omnis veniam autem, id, dolor necessitatibus ut nam repellat accusantium assumenda odit officia veritatis praesentium illum velit Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Inventore nulla beatae incidunt illum, ipsam consequatur fugit, reiciendis, eius in fuga quos? In exercitationem provident est dignissimos corporis nesciunt laudantium nisi ullam quasi eos ut ea alias debitis
+                porro officiis a autem, itaque eum accusamus, voluptatum sapiente fuga voluptatem inventore expedita. Architecto tempore recusandae sunt, molestiae reiciendis voluptatibus ea harum impedit, minus expedita beatae facere quo laudantium delectus
+                incidunt accusamus. Alias temporibus corrupti quis accusantium illum ipsam consectetur repellat dolorum deserunt, at sint maxime corporis cum voluptate consequuntur facere quia eveniet quidem, officiis eligendi totam aliquam! Sequi architecto
+                error culpa quibusdam.
+            </p>
+
+            <img src="s.jpg" alt="" width="600px" height="500em" style="float: right;">
+        </div>
+    </div>
+
+
+</body>
+
+</html>
