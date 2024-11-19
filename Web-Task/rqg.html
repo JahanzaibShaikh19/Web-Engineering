@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #381313;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: rgb(208, 132, 132);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        #qtDisplay {
+            min-height: 100px;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        #favoriteButton {
+            background-color: #f44336;
+        }
+        
+        #favoriteQuotes {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .favorite-quote {
+            background-color: #f0f0f0;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Random Quote Generator</h1>
+        <div id="qtDisplay"></div>
+        <button id="getQuoteButton">Get Quote</button>
+        <button id="favoriteButton">Add to Favorites</button>
+        <div id="favoriteQuotes">
+            <h2>Favorite Quotes</h2>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            "The only way to do great work is to love what you do. - Steve Jobs",
+            "Believe you can and you're halfway there. - Theodore Roosevelt",
+            "It does not matter how slowly you go as long as you do not stop. - Confucius",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill",
+            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt"
+        ];
+
+        const qtDisplay = document.getElementById('qtDisplay');
+        const getQuoteButton = document.getElementById('getQuoteButton');
+        const favoriteButton = document.getElementById('favoriteButton');
+        const favQuotes = document.getElementById('favoriteQuotes');
+
+        let currQuote = '';
+
+        function getQuote() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * quotes.length);
+                    resolve(quotes[randomIndex]);
+                }, 1000);
+            });
+        }
+
+        getQuoteButton.addEventListener('click', async() => {
+            getQuoteButton.disabled = true;
+            qtDisplay.textContent = 'Loading...';
+            currQuote = await getQuote();
+            qtDisplay.textContent = currQuote;
+            getQuoteButton.disabled = false;
+        });
+
+        favoriteButton.addEventListener('click', () => {
+            if (currQuote && !isFavorite(currQuote)) {
+                addToFavorites(currQuote);
+            }
+        });
+
+        function addToFavorites(quote) {
+            const favQuote = document.createElement('div');
+            favQuote.className = 'favorite-quote';
+            favQuote.textContent = quote;
+            favQuotes.appendChild(favQuote);
+        }
+
+        function isFavorite(quote) {
+            const favorites = favQuotes.getElementsByClassName('favorite-quote');
+            for (let i = 0; i < favorites.length; i++) {
+                if (favorites[i].textContent === quote) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
